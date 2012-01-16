@@ -51,9 +51,7 @@ module AlertTweeter
         on      :serviceoutput=,      'first line of text output from the last service check'
         on      :timet=,              'seconds since unix epoch'
 
-        on      :ack,                 'this is an acknowledgement'
-        on      :service_alert,       'this is a service alert'
-        on      :host_alert,          'this is a host alert'
+        on      :alert_type=,         'type of alert message: ACK, SERVICE, HOST', :match => /^(ACK|SERVICE|HOST)$/
 
 
       end
