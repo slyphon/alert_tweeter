@@ -57,7 +57,7 @@ module AlertTweeter
 
     def service_notify!
       send_notification <<-EOS.strip_heredoc[0...140]
-        #{notification_type} #{host_name}/#{service_desc} #{service_state}
+        #{notification_type} #{host_name}/#{service_desc} #{event_state}
         #{timestamp}
         #{service_output}
       EOS
@@ -65,7 +65,7 @@ module AlertTweeter
 
     def host_notify!
       send_notification <<-EOS.strip_heredoc[0...140]
-        #{notification_type} #{host_name} #{host_state}
+        #{notification_type} #{host_name} #{event_state}
         #{timestamp}
         #{host_output}
       EOS
@@ -74,7 +74,7 @@ module AlertTweeter
     def run!(*args)
       args << '-h' if args.empty?
 
-      @opts = Slop.parse!(args, :strict => true) do
+      @opts = Slop.parse!(args, :strict => true, :help => true) do
         banner <<-EOS.strip_heredoc
           Usage: #{File.basename($0)} [opts] 
 
@@ -86,22 +86,21 @@ module AlertTweeter
 
         on :n, :notification_type,      'string describing the type of notification being sent', true
 
+        on :s, :event_state,            'string indicating the state of event-generating object', true, :default => 'UNKNOWN'
+        on :y, :event_state_type,       'HARD or SOFT', true
+
         on :H, :host_name,              'host name where the alert is triggered', true, :required => true
         on :a, :host_address,           'IP address of the host', true
-        on :S, :host_state,             'UP, DOWN, or UNREACHABLE', true
-        on :Y, :host_state_type,        'HARD or SOFT', true
-        on :A, :host_attempt,           'number of the current re-check', true
-        on :O, :host_output,            'output from host check', true
+        on :A, :host_attempt,           'number of the current re-check', true, :as => :integer
+        on :O, :host_output,            'output from host check', true, :default => ''
+        on :U, :host_duration_sec,      'number of seconds the host has spent in the current state', true, :as => :integer
 
         on :d, :service_desc,           'description of the service', true
-        on :s, :service_state,          'string indicating the current state of the service', true
-        on :y, :service_state_type,     'HARD or SOFT', true
-        on :a, :service_attempt,        'number of the current re-check', true
-        on :u, :service_duration_sec,   'number of seconds the service has been in the current state', true
-        on :o, :service_output,         'first line of text output from the last service check', true
+        on :a, :service_attempt,        'number of the current re-check', true, :as => :integer
+        on :u, :service_duration_sec,   'number of seconds the service has been in the current state', true, :as => :integer
+        on :o, :service_output,         'first line of text output from the last service check', true, :default => ''
 
         on :t, :timet,                  'seconds since unix epoch', true, :as => :integer
-        on :h, :help,                   "You're reading it", false, :tail => true
       end
 
       if opts.help?
