@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency 'twitter',       '~> 2.0.2'
-  s.add_runtime_dependency 'slop',          '~> 1.9.1'
+  s.add_runtime_dependency 'slop',          '~> 2.4.2'
   s.add_runtime_dependency 'activesupport', '~> 3.1.0'
   s.add_runtime_dependency 'i18n'
 
