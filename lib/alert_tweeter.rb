@@ -16,7 +16,7 @@ end
 module AlertTweeter
   mattr_accessor :root, :instance_writer => false 
 
-  DEFAULT_CONFIG_PATH = File.expand_path('~/.alert_tweeter.yml')
+  DEFAULT_CONFIG_PATH = '/etc/alert_tweeter.yml'
 
   class Command
     attr_reader :opts
