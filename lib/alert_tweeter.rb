@@ -17,6 +17,9 @@ module AlertTweeter
   mattr_accessor :root, :instance_writer => false 
 
   DEFAULT_CONFIG_PATH = '/etc/alert_tweeter.yml'
+  WORKER_QUEUE_NAME   = 'alert_tweeter.worker.queue.shared'
+  EXCHANGE_NAME       = 'alert_tweeter.worker.exchange.direct'
+  ROUTING_KEY         = 'alert_tweeter.routing.tweet'
 
   class Command
     attr_reader :opts
@@ -101,6 +104,10 @@ module AlertTweeter
         on :o, :service_output,         'first line of text output from the last service check', true, :default => ''
 
         on :t, :timet,                  'seconds since unix epoch', true, :as => :integer
+
+
+        on :worker,      'run an asynchronous worker'
+        on :broker_url=, 'rabbitmq broker to connect to', :default => 'amqp://localhost'
       end
 
       if opts.help?

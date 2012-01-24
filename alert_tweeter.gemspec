@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "alert_tweeter"
 
-  s.files         = `git ls-files`.split("\n")
+  s.files         = `git ls-files`.split("\n").reject{|n| n =~ /\.gem$/}
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
@@ -22,6 +22,13 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'slop',          '~> 2.4.2'
   s.add_runtime_dependency 'activesupport', '~> 3.1.0'
   s.add_runtime_dependency 'i18n'
+
+  s.add_runtime_dependency 'eventmachine', '~> 1.0.0.beta.4'
+  s.add_runtime_dependency 'amqp',  '~> 0.9.1'
+  s.add_runtime_dependency 'deferred', '~> 0.5.1'
+
+  s.add_development_dependency 'rspec', '~> 2.8.0'
+  s.add_development_dependency 'evented-spec', '~> 0.9.0'
 
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"
