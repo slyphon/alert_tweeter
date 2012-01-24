@@ -92,13 +92,13 @@ module AlertTweeter
         on :H, :host_name,              'host name where the alert is triggered', true, :required => true
         on :a, :host_address,           'IP address of the host', true
         on :A, :host_attempt,           'number of the current re-check', true, :as => :integer
-        on :O, :host_output,            'output from host check', true, :default => ''
+        on :O, :host_output,            'output from host check', true
         on :U, :host_duration_sec,      'number of seconds the host has spent in the current state', true, :as => :integer
 
         on :d, :service_desc,           'description of the service', true
         on :a, :service_attempt,        'number of the current re-check', true, :as => :integer
         on :u, :service_duration_sec,   'number of seconds the service has been in the current state', true, :as => :integer
-        on :o, :service_output,         'first line of text output from the last service check', true, :default => ''
+        on :o, :service_output,         'first line of text output from the last service check', true
 
         on :t, :timet,                  'seconds since unix epoch', true, :as => :integer
       end
@@ -108,14 +108,14 @@ module AlertTweeter
         exit 1
       end
 
-      unless opts[:service_state] or opts[:host_state]
-        $stderr.puts "ERROR: You must specify either a --service_state or --host_state option"
+      unless opts[:service_output] or opts[:host_output]
+        $stderr.puts "ERROR: You must specify either a --service_output or --host_output option"
         exit 1
       end
 
       configure_client!(opts[:config])
 
-      if opts[:service_state]
+      if opts[:service_output]
         service_notify!
       else
         host_notify!
