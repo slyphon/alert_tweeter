@@ -100,7 +100,7 @@ module AlertTweeter
         on :u, :service_duration_sec,   'number of seconds the service has been in the current state', true, :as => :integer
         on :o, :service_output,         'first line of text output from the last service check', true
 
-        on :t, :timet,                  'seconds since unix epoch', true, :as => :integer
+        on :t, :timet,                  'seconds since unix epoch', true, :as => :integer, :default => Time.now.to_i
       end
 
       if opts.help?
