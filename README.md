@@ -83,7 +83,8 @@ define contact {
 
 (GAH! I *hate* nagios! could they make it MORE verbose, error-prone, and annoying?!)
 
-Obviously replace `--config=/path/to/the/config.yml` with the path to the *actual* config. I use rvm, if you don't, or if you're weird and like rbenv, you'll need to adjust the above commands.
+Obviously replace `--config=/path/to/the/config.yml` with the path to the *actual* config. 
 
+I use rvm. If you don't, or if you're weird and like rbenv, you'll need to adjust the above commands.
 
 
