@@ -1,10 +1,21 @@
-## Alert tweeter
+# Alert tweeter
 
-A dirt-simple way of tweeting nagios alerts
+Hate paying _[insert provider here]_ the __OUTRAGEOUS__ texting rates you need if you're sending Nagios alerts via SMS? 
+
+Yeah, so do I. 
+
+Here's a fairly simple way to send your nagios alerts to your mobile device via Twitter. The iOS twitter app will alert when you get direct messages (you may need to run it first, so that it's in "sleep mode"), so instead of paying [$150/MB](https://twitter.com/#!/slyphon/status/160849711937490944) in SMS rates, you're piggybacking off your somewhat more generous data plan.
+
+Unless you *love* your wireless carrier, or perhaps in the case of AT&T [feel sorry for them][whining babies], use alert tweeter.
+
+
+[whining babies]: http://www.pcworld.com/businesscenter/article/184179/atandt_now_blaming_customers_for_its_problems.html 
 
 ## Configuration
 
+* You will probably want to set up a dedicated twitter account that represnts your nagios.
 * You'll need to [register an app](https://dev.twitter.com/apps).
+* People who need to receive tweets will likely need to follow the tweeter.
 * You'll need a YAML file like:
 
 ```
