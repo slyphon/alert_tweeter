@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "alert_tweeter"
   s.version     = AlertTweeter::VERSION
   s.authors     = ["Jonathan D. Simms"]
-  s.email       = ["simms@hp.com"]
-  s.homepage    = "https://fish.motionbox.com/git/?p=systems/nagios/alert_tweeter.git;a=summary"
+  s.email       = ["slyphon@gmail.com"]
+  s.homepage    = "https://github.com/slyphon/alert_tweeter"
   s.summary     = %q{Nagios alerts go to twitter}
   s.description = s.summary + "\n"
 
@@ -22,8 +22,4 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'slop',          '~> 2.4.2'
   s.add_runtime_dependency 'activesupport', '~> 3.1.0'
   s.add_runtime_dependency 'i18n'
-
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
 end
